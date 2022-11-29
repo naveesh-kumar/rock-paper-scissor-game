@@ -16,6 +16,9 @@ const styles = {
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
+    "& *": {
+      boxSizing: "border-box",
+    },
   },
 };
 
