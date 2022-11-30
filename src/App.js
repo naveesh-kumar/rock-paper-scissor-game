@@ -3,6 +3,7 @@ import { withStyles } from "@material-ui/core";
 import { theme } from "./theme";
 
 import ScoreBoard from "./components/ScoreBoard";
+import MainBoardGame from "./components/MainGameBoard";
 
 const styles = {
   "@global body": {
@@ -10,7 +11,7 @@ const styles = {
     margin: 0,
   },
   root: {
-    backgroundColor: theme.palette.neutral["dark"],
+    background: theme.palette.background["radial"],
     color: theme.palette.neutral["white"],
     height: "100vh",
     display: "flex",
@@ -26,6 +27,7 @@ function App({ classes }) {
   return (
     <div className={classes.root}>
       <ScoreBoard />
+      <MainBoardGame />
     </div>
   );
 }
