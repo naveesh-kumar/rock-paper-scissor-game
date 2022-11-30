@@ -16,6 +16,7 @@ const styles = {
     height: "100vh",
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
     flexDirection: "column",
     "& *": {
       boxSizing: "border-box",

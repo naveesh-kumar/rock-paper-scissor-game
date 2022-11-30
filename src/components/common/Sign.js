@@ -23,6 +23,12 @@ const styles = {
       height: "140px",
       borderRadius: "140px",
       position: "absolute",
+      boxShadow: (props) =>
+        props.name == "paper"
+          ? "0px 5px 0px 1px hsl(230, 89%, 55%)"
+          : props.name == "rock"
+          ? "0px 5px 0px 1px hsl(349, 71%, 32%)"
+          : "0px 5px 0px 1px hsl(39, 89%, 39%)",
     },
     "&::before": {
       content: "''",
