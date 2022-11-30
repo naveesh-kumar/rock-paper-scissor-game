@@ -2,12 +2,10 @@ import React from "react";
 import { Typography, withStyles } from "@material-ui/core";
 import { theme } from "../theme";
 
-import Rock from "./../images/icon-rock.svg";
-import Paper from "./../images/icon-paper.svg";
-import Scissor from "./../images/icon-scissors.svg";
 import Sign from "./common/Sign";
 import Triangle from "./../images/bg-triangle.svg";
 import RulesModal from "./RulesModal";
+import PickedSigns from "./PickedSigns";
 
 const styles = {
   root: {
@@ -48,19 +46,30 @@ const styles = {
 
 const MainBoardGame = ({ classes }) => {
   const [rulesModalOpen, setRulesModalOpen] = React.useState(false);
+  const [isPicked, setIsPicked] = React.useState(false);
+  const [signSelected, setSignSelected] = React.useState("");
 
   const handleModalClose = () => {
     setRulesModalOpen(false);
   };
 
+  const handleOnClick = (e, name) => {
+    e.preventDefault();
+    setIsPicked(true);
+    setSignSelected(name);
+  };
+
   return (
     <>
       <div className={classes.root}>
-        <div className={classes.mainboard}>
-          <Sign svg={Paper} name="paper" />
-          <Sign svg={Scissor} name="scissor" />
-          <Sign svg={Rock} name="rock" />
-        </div>
+        {!isPicked && (
+          <div className={classes.mainboard}>
+            <Sign name="paper" handleOnClick={handleOnClick} />
+            <Sign name="scissor" handleOnClick={handleOnClick} />
+            <Sign name="rock" handleOnClick={handleOnClick} />
+          </div>
+        )}
+        {isPicked && <PickedSigns signSelected={signSelected} />}
         <div className={classes.rules} onClick={() => setRulesModalOpen(true)}>
           <Typography variant="subtitle1">rules</Typography>
         </div>

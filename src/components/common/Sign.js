@@ -1,17 +1,21 @@
 import React from "react";
 import { withStyles } from "@material-ui/core";
 import { theme } from "../../theme";
+import Rock from "./../../images/icon-rock.svg";
+import Paper from "./../../images/icon-paper.svg";
+import Scissor from "./../../images/icon-scissors.svg";
 
 const styles = {
   root: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    width: "140px",
-    height: "140px",
-    cursor: "pointer",
+    width: (props) => (props.isLarge ? "180px" : "140px"),
+    height: (props) => (props.isLarge ? "180px" : "140px"),
+    cursor: (props) => (props.isLarge ? "" : "pointer"),
     "& img": {
       zIndex: "10",
+      transform: (props) => (props.isLarge ? "scale(1.1)" : ""),
       "&:hover": {
         transform: "scale(1.1)",
       },
@@ -19,9 +23,9 @@ const styles = {
     "&::after": {
       content: "''",
       background: (props) => getBgColor(props.name),
-      width: "140px",
-      height: "140px",
-      borderRadius: "140px",
+      width: (props) => (props.isLarge ? "180px" : "140px"),
+      height: (props) => (props.isLarge ? "180px" : "140px"),
+      borderRadius: "50%",
       position: "absolute",
       boxShadow: (props) =>
         props.name == "paper"
@@ -32,10 +36,10 @@ const styles = {
     },
     "&::before": {
       content: "''",
-      width: "100px",
-      height: "100px",
+      width: (props) => (props.isLarge ? "130px" : "100px"),
+      height: (props) => (props.isLarge ? "130px" : "100px"),
       backgroundColor: "white",
-      borderRadius: "100px",
+      borderRadius: "50%",
       position: "absolute",
       zIndex: "2",
       boxShadow: "0px -5px 0px 1px lightgray",
@@ -56,10 +60,26 @@ function getBgColor(name) {
   }
 }
 
-const Sign = ({ classes, svg, name }) => {
+const Sign = ({ classes, name, handleOnClick }) => {
+  const getSvg = React.useCallback(
+    (name) => {
+      switch (name) {
+        case "paper":
+          return Paper;
+        case "scissor":
+          return Scissor;
+        case "rock":
+          return Rock;
+        default:
+          return "";
+      }
+    },
+    [name]
+  );
+
   return (
-    <div className={classes.root}>
-      <img src={svg} alt={name} />
+    <div className={classes.root} onClick={(e) => handleOnClick(e, name)}>
+      <img src={getSvg(name)} alt={name} />
     </div>
   );
 };
