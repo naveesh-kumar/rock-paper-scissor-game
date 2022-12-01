@@ -45,6 +45,13 @@ const styles = {
       boxShadow: "0px -5px 0px 1px lightgray",
     },
   },
+
+  fakeSign: {
+    width: (props) => (props.isLarge ? "180px" : "140px"),
+    height: (props) => (props.isLarge ? "180px" : "140px"),
+    borderRadius: "50%",
+    backgroundColor: theme.palette.neutral["dark"],
+  },
 };
 
 function getBgColor(name) {
@@ -60,7 +67,7 @@ function getBgColor(name) {
   }
 }
 
-const Sign = ({ classes, name, handleOnClick }) => {
+const Sign = ({ classes, name, handleOnClick = () => {} }) => {
   const getSvg = React.useCallback(
     (name) => {
       switch (name) {
@@ -77,10 +84,12 @@ const Sign = ({ classes, name, handleOnClick }) => {
     [name]
   );
 
-  return (
-    <div className={classes.root} onClick={(e) => handleOnClick(e, name)}>
+  return name ? (
+    <div className={classes.root} onClick={() => handleOnClick(name)}>
       <img src={getSvg(name)} alt={name} />
     </div>
+  ) : (
+    <div className={classes.fakeSign}></div>
   );
 };
 

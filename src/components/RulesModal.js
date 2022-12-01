@@ -40,6 +40,9 @@ const styles = {
       fontFamily: theme.typography.fontFamily,
       textTransform: "uppercase",
     },
+    "&:focus": {
+      outline: "none",
+    },
   },
 };
 
@@ -50,7 +53,7 @@ const RulesModal = ({ classes, open, handleModalClose }) => {
       className={classes.presentation}
       onClose={handleModalClose}
     >
-      <Card className={classes.modal} disableAutoFocus={true}>
+      <Card className={classes.modal}>
         <IconButton className={classes.closeBtn} onClick={handleModalClose}>
           <img src={Close} alt="close" width={15} height={15} />
         </IconButton>

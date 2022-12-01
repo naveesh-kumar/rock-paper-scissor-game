@@ -53,8 +53,7 @@ const MainBoardGame = ({ classes }) => {
     setRulesModalOpen(false);
   };
 
-  const handleOnClick = (e, name) => {
-    e.preventDefault();
+  const handleOnClick = (name) => {
     setIsPicked(true);
     setSignSelected(name);
   };
@@ -69,7 +68,9 @@ const MainBoardGame = ({ classes }) => {
             <Sign name="rock" handleOnClick={handleOnClick} />
           </div>
         )}
-        {isPicked && <PickedSigns signSelected={signSelected} />}
+        {isPicked && (
+          <PickedSigns signSelected={signSelected} setIsPicked={setIsPicked} />
+        )}
         <div className={classes.rules} onClick={() => setRulesModalOpen(true)}>
           <Typography variant="subtitle1">rules</Typography>
         </div>
