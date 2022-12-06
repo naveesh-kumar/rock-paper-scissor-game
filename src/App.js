@@ -20,6 +20,7 @@ const styles = {
     flexDirection: "column",
     "& *": {
       boxSizing: "border-box",
+      fontFamily: theme.typography.fontFamily,
     },
     [theme.breakpoints.down(740)]: {
       justifyContent: "space-evenly",
