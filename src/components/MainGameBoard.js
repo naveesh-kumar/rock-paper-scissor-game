@@ -26,6 +26,9 @@ const styles = {
       height: "250px",
       position: "absolute",
     },
+    [theme.breakpoints.down(740)]: {
+      width: "355px",
+    },
   },
   rules: {
     textTransform: "uppercase",
@@ -34,8 +37,6 @@ const styles = {
     textAlign: "center",
     borderRadius: "12px",
     padding: "5px",
-    position: "absolute",
-    right: "0",
     cursor: "pointer",
     "& h6": {
       fontFamily: theme.typography.fontFamily,
@@ -44,7 +45,7 @@ const styles = {
   },
 };
 
-const MainBoardGame = ({ classes }) => {
+const MainBoardGame = ({ classes, setScore }) => {
   const [rulesModalOpen, setRulesModalOpen] = React.useState(false);
   const [isPicked, setIsPicked] = React.useState(false);
   const [signSelected, setSignSelected] = React.useState("");
@@ -69,11 +70,15 @@ const MainBoardGame = ({ classes }) => {
           </div>
         )}
         {isPicked && (
-          <PickedSigns signSelected={signSelected} setIsPicked={setIsPicked} />
+          <PickedSigns
+            signSelected={signSelected}
+            setIsPicked={setIsPicked}
+            setScore={setScore}
+          />
         )}
-        <div className={classes.rules} onClick={() => setRulesModalOpen(true)}>
-          <Typography variant="subtitle1">rules</Typography>
-        </div>
+      </div>
+      <div className={classes.rules} onClick={() => setRulesModalOpen(true)}>
+        <Typography variant="subtitle1">rules</Typography>
       </div>
       <RulesModal open={rulesModalOpen} handleModalClose={handleModalClose} />
     </>

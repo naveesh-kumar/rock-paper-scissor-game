@@ -14,6 +14,9 @@ const styles = {
     justifyContent: "space-between",
     alignItems: "center",
     padding: "0px 20px",
+    [theme.breakpoints.down(740)]: {
+      width: "355px",
+    },
   },
   scoreTextContainer: {
     height: "80px",
@@ -39,7 +42,7 @@ const styles = {
   },
 };
 
-const ScoreBoard = ({ classes }) => {
+const ScoreBoard = ({ classes, score }) => {
   return (
     <div className={classes.root}>
       <img src={logo} height={80} alt="logo" />
@@ -47,7 +50,7 @@ const ScoreBoard = ({ classes }) => {
         <Typography variant="caption" component="h6">
           score
         </Typography>
-        <Typography variant="h3">12</Typography>
+        <Typography variant="h3">{score}</Typography>
       </Paper>
     </div>
   );

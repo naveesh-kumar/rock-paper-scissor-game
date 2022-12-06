@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Typography, withStyles } from "@material-ui/core";
+import { theme } from "../theme";
 import Sign from "./common/Sign";
 import Result from "./Result";
 
@@ -10,6 +11,10 @@ const styles = {
     display: "flex",
     justifyContent: "space-evenly",
     alignItems: "center",
+    [theme.breakpoints.down(740)]: {
+      width: "355px",
+      flexWrap: "wrap",
+    },
   },
   homePickedRoot: {
     width: "700px",
@@ -17,6 +22,11 @@ const styles = {
     display: "flex",
     justifyContent: "space-evenly",
     alignItems: "center",
+    [theme.breakpoints.down(740)]: {
+      width: "355px",
+      flexWrap: "wrap",
+      height: "280px",
+    },
   },
   picked: {
     display: "flex",
@@ -41,11 +51,15 @@ const styles = {
       fontWeight: "700",
       color: "hsl(349, 71%, 52%)",
     },
+    [theme.breakpoints.down(740)]: {
+      order: 3,
+    },
   },
 };
 
-const PickedSigns = ({ classes, signSelected, setIsPicked }) => {
+const PickedSigns = ({ classes, signSelected, setIsPicked, setScore }) => {
   const [homePicked, setHomePicked] = React.useState("");
+  const [result, setResult] = React.useState("");
 
   const getHomePickedSign = () => {
     let signs = ["rock", "paper", "scissor"];
@@ -67,7 +81,13 @@ const PickedSigns = ({ classes, signSelected, setIsPicked }) => {
       </div>
       {homePicked && (
         <div className={classes.result}>
-          <Result homePicked={homePicked} userPicked={signSelected} />
+          <Result
+            homePicked={homePicked}
+            userPicked={signSelected}
+            setScore={setScore}
+            result={result}
+            setResult={setResult}
+          />
           <Button
             variant="contained"
             disableRipple

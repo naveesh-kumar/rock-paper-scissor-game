@@ -1,9 +1,7 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
 
-const Result = ({ homePicked, userPicked }) => {
-  const [result, setResult] = React.useState("");
-
+const Result = ({ homePicked, userPicked, setScore, result, setResult }) => {
   //new Map([userPicked, {homePicked options}])
   const signPriority = new Map([
     ["paper", { scissor: 0, rock: 1 }],
@@ -20,6 +18,7 @@ const Result = ({ homePicked, userPicked }) => {
   React.useEffect(() => {
     let result = findResult();
     setResult(result);
+    if (result === "you won") setScore((prevScore) => prevScore + 1);
   }, []);
 
   return <Typography variant="h4">{result}</Typography>;

@@ -44,6 +44,14 @@ const styles = {
       outline: "none",
     },
   },
+  imgContainer: {
+    width: "250px",
+    height: "225px",
+    "& img": {
+      width: "100%",
+      height: "100%",
+    },
+  },
 };
 
 const RulesModal = ({ classes, open, handleModalClose }) => {
@@ -58,7 +66,9 @@ const RulesModal = ({ classes, open, handleModalClose }) => {
           <img src={Close} alt="close" width={15} height={15} />
         </IconButton>
         <Typography variant="h5">rules</Typography>
-        <img src={RulesSvg} alt="rules" width={250} />
+        <div className={classes.imgContainer}>
+          <img src={RulesSvg} alt="rules" />
+        </div>
       </Card>
     </Modal>
   );

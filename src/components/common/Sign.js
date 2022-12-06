@@ -33,6 +33,10 @@ const styles = {
           : props.name == "rock"
           ? "0px 5px 0px 1px hsl(349, 71%, 32%)"
           : "0px 5px 0px 1px hsl(39, 89%, 39%)",
+      [theme.breakpoints.down(740)]: {
+        width: (props) => (props.isLarge ? "150px" : "130px"),
+        height: (props) => (props.isLarge ? "150px" : "130px"),
+      },
     },
     "&::before": {
       content: "''",
@@ -43,6 +47,14 @@ const styles = {
       position: "absolute",
       zIndex: "2",
       boxShadow: "0px -5px 0px 1px lightgray",
+      [theme.breakpoints.down(740)]: {
+        width: (props) => (props.isLarge ? "110px" : "90px"),
+        height: (props) => (props.isLarge ? "110px" : "90px"),
+      },
+    },
+    [theme.breakpoints.down(740)]: {
+      width: (props) => (props.isLarge ? "150px" : "130px"),
+      height: (props) => (props.isLarge ? "150px" : "130px"),
     },
   },
 
@@ -51,6 +63,10 @@ const styles = {
     height: (props) => (props.isLarge ? "180px" : "140px"),
     borderRadius: "50%",
     backgroundColor: theme.palette.neutral["dark"],
+    [theme.breakpoints.down(740)]: {
+      width: (props) => (props.isLarge ? "150px" : "130px"),
+      height: (props) => (props.isLarge ? "150px" : "130px"),
+    },
   },
 };
 

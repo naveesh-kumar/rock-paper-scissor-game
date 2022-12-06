@@ -21,14 +21,18 @@ const styles = {
     "& *": {
       boxSizing: "border-box",
     },
+    [theme.breakpoints.down(740)]: {
+      justifyContent: "space-evenly",
+    },
   },
 };
 
 function App({ classes }) {
+  const [score, setScore] = React.useState(0);
   return (
     <div className={classes.root}>
-      <ScoreBoard />
-      <MainBoardGame />
+      <ScoreBoard score={score} />
+      <MainBoardGame setScore={setScore} />
     </div>
   );
 }
